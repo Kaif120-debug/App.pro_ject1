@@ -10,6 +10,8 @@ A production-ready JavaFX desktop application designed to manage operational ine
 - Sales trend visualization
 - Low stock alerts and warnings
 - Quick access to important statistics
+- <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2da74075-b21d-4324-9b4d-6fc974f61e8f" />
+
 
 ### 📦 Inventory Management
 
