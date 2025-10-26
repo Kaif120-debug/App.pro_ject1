@@ -20,6 +20,8 @@ A production-ready JavaFX desktop application designed to manage operational ine
 - Monitor stock levels with reorder alerts
 - Search and filter products by category
 - Real-time inventory valuation
+- <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/fcd31fc4-65d3-443a-9e71-0aafa07387bb" />
+
 
 ### 🧾 Billing System
 
@@ -28,6 +30,8 @@ A production-ready JavaFX desktop application designed to manage operational ine
 - Real-time calculation of totals and taxes
 - Multiple payment method support
 - Invoice history and lookup
+- <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/dd64eeb9-caac-4666-b65e-6431c82a7f44" />
+
 
 ### 📈 Sales Reports
 
@@ -37,6 +41,8 @@ A production-ready JavaFX desktop application designed to manage operational ine
 - Transaction count tracking
 - Visualized sales trends and profit charts
 - Monthly and yearly analytics
+- <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5ac52001-b20e-45c7-a0ed-def57aed4cdc" />
+
 
 ## System Requirements
 
