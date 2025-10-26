@@ -1,280 +1,80 @@
-# Kirana Store Manager - Desktop Application
+# Kirana Store Manager
 
-A production-ready JavaFX desktop application designed to manage operational inefficiencies for local Kirana stores. The system provides comprehensive solutions for inventory management, billing, and sales reporting.
+A simple desktop application built with **Java + JavaFX + MySQL** for managing a Kirana store.
+
+## Technology Stack
+
+- **Java 21** - Programming language
+- **JavaFX 21** - UI framework for desktop applications
+- **MySQL 8.0** - Database for data persistence
 
 ## Features
 
-### 📊 Dashboard
-
-- Real-time overview of key business metrics
-- Sales trend visualization
-- Low stock alerts and warnings
-- Quick access to important statistics
-
-### 📦 Inventory Management
-
-- Add, edit, and delete products
-- Track product SKU, category, and pricing
-- Monitor stock levels with reorder alerts
-- Search and filter products by category
-- Real-time inventory valuation
-
-### 🧾 Billing System
-
-- Quick and intuitive invoice creation
-- Add multiple items to cart
-- Real-time calculation of totals and taxes
-- Multiple payment method support
-- Invoice history and lookup
-
-### 📈 Sales Reports
-
-- Comprehensive daily sales reporting
-- Profit margin analysis
-- Date range filtering
-- Transaction count tracking
-- Visualized sales trends and profit charts
-- Monthly and yearly analytics
-
-## System Requirements
-
-- **Java**: JDK 17 or higher
-- **JavaFX**: 21.0.2 (included via Maven)
-- **SQLite**: Database included
-- **OS**: Windows, macOS, or Linux
-- **RAM**: Minimum 512MB
-- **Storage**: ~100MB free space
-
-## Installation & Setup
-
-### Option 1: Using Maven (Recommended)
-
-1. **Clone or extract the project**
-
-   ```bash
-   cd kirana-store-manager
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   mvn clean install
-   ```
-
-3. **Run the application**
-   ```bash
-   mvn javafx:run
-   ```
-
-### Option 2: Build JAR and Run
-
-1. **Build the project**
-
-   ```bash
-   mvn clean package
-   ```
-
-2. **Run the JAR**
-   ```bash
-   java -jar target/KiranaStoreManager.jar
-   ```
-
-### Option 3: IntelliJ IDEA
-
-1. Open the project in IntelliJ IDEA
-2. Right-click on `KiranaStoreApp.java`
-3. Select "Run 'KiranaStoreApp.main()'"
+- **Inventory Management**: Add, edit, delete products
+- **Billing System**: Create invoices and manage sales
+- **Dashboard**: View store statistics and reports
+- **Database Integration**: All data stored in MySQL database
 
 ## Project Structure
 
 ```
-kirana-store-manager/
-├── src/main/
-│   ├── java/com/kiranastore/
-│   │   ├── KiranaStoreApp.java          # Application entry point
-│   │   ├���─ controller/                  # JavaFX controllers
-│   │   │   ├── MainDashboardController.java
-│   │   │   ├── DashboardController.java
-│   │   │   ├── InventoryController.java
-│   │   │   ├── BillingController.java
-│   │   │   └── ReportsController.java
-│   │   ├── model/                       # Data models
-│   │   │   ├── Product.java
-│   │   │   ├── Invoice.java
-│   │   │   ├── InvoiceItem.java
-│   │   │   └── SalesReport.java
-│   │   ├── service/                     # Business logic
-│   │   │   ├── ProductService.java
-│   │   │   ├── InvoiceService.java
-│   │   │   └── SalesReportService.java
-│   │   ├── dao/                         # Database access
-│   │   │   ├── ProductDAO.java
-│   │   │   ├── InvoiceDAO.java
-│   │   │   └── SalesReportDAO.java
-│   │   └── database/                    # Database configuration
-│   │       ├── DatabaseConnection.java
-│   │       └── DatabaseInitializer.java
-│   ├── resources/
-│   │   ├── fxml/                        # UI layouts
-│   │   │   ├── MainDashboard.fxml
-│   │   │   ├── Dashboard.fxml
-│   │   │   ├── Inventory.fxml
-│   │   │   ├── Billing.fxml
-│   │   │   └── Reports.fxml
-│   │   └── css/
-│   │       └── styles.css               # Application styling
-├── pom.xml                              # Maven configuration
-└── README.md                            # This file
+src/main/java/com/kiranastore/
+├── controller/          # JavaFX controllers
+├── dao/                # Data Access Objects (Database operations)
+├── database/           # Database connection and initialization
+├── model/              # Data models (Product, Invoice, etc.)
+├── service/            # Business logic services
+└── KiranaStoreApp.java # Main application class
 ```
 
-## Database
+## Requirements
 
-The application uses **SQLite** with the following tables:
+- Java 21 or higher
+- MySQL 8.0 or higher
+- JavaFX 21 (included in dependencies)
 
-- **products**: Store product information
-- **invoices**: Store invoice records
-- **invoice_items**: Store individual items in invoices
-- **sales_reports**: Aggregated daily sales data
-- **stock_movements**: Track inventory movements
+## Setup
 
-Database file: `kiranastore.db` (created in the application directory)
+1. **Install Java 21**
+2. **Install MySQL and create database**
+3. **Update database connection** in `DatabaseConnection.java`
+4. **Run the application**:
+   ```bash
+   ./gradlew run
+   ```
 
-## Usage Guide
+## Database Configuration
 
-### Adding a Product
+Update the database connection details in `src/main/java/com/kiranastore/database/DatabaseConnection.java`:
 
-1. Navigate to "Inventory" → Click "Add Product"
-2. Enter product details (name, SKU, category, prices, quantity)
-3. Click "OK" to save
+```java
+private static final String DB_URL = "jdbc:mysql://localhost:3306/kirana_store";
+private static final String DB_USER = "your_username";
+private static final String DB_PASSWORD = "your_password";
+```
 
-### Creating an Invoice
+## Building
 
-1. Navigate to "Billing"
-2. Select a product and enter quantity
-3. Click "Add Item to Cart"
-4. Enter customer details (optional)
-5. Select payment method
-6. Click "Generate Invoice"
+```bash
+# Build with Gradle
+./gradlew build
 
-### Viewing Reports
+# Run application
+./gradlew run
 
-1. Navigate to "Reports"
-2. Select date range using date pickers
-3. Click "Generate Report"
-4. View charts and statistics
+# Create JAR file
+./gradlew jar
+```
 
-## Features in Detail
+## Features
 
-### Inventory Management
-
-- **Product Management**: Add, edit, delete products with full details
-- **Stock Tracking**: Monitor quantity in stock with reorder levels
-- **Low Stock Alerts**: Automatic alerts for low stock items
-- **Inventory Valuation**: Calculate total inventory value in real-time
-- **Category Organization**: Organize products by category
-
-### Billing System
-
-- **Quick Invoicing**: Create invoices quickly with multiple items
-- **Real-time Calculation**: Automatic calculation of totals and taxes (5% default)
-- **Multiple Payment Methods**: Support for cash, card, cheque, online transfer
-- **Invoice History**: View all past invoices
-- **Stock Integration**: Automatic stock deduction upon invoice generation
-
-### Sales Reporting
-
-- **Daily Reports**: Automatic daily sales report generation
-- **Profit Analysis**: Track profit and profit margin
-- **Sales Trends**: Visualize sales trends over time
-- **Transaction Analytics**: Monitor transaction counts and average values
-- **Period Comparison**: Compare sales across different date ranges
-
-### Dashboard Analytics
-
-- **Quick Stats**: View key business metrics at a glance
-- **Sales Visualization**: Charts showing 7-day sales trend
-- **Low Stock Warnings**: Priority alerts for products needing restock
-- **Real-time Data**: All metrics updated in real-time
-
-## Tax Calculation
-
-The system applies a default **5% tax** on all invoices. To modify:
-
-1. Open `InvoiceService.java`
-2. Find the line: `invoice.setTax(subtotal * 0.05);`
-3. Change `0.05` to your desired tax rate
-
-## Default Settings
-
-- **Tax Rate**: 5%
-- **Database**: SQLite (Local file: `kiranastore.db`)
-- **Date Format**: YYYY-MM-DD
-- **Currency**: Indian Rupees (Rs.)
-
-## Troubleshooting
-
-### Issue: "SQLite JDBC driver not found"
-
-**Solution**: Run `mvn clean install` to download dependencies
-
-### Issue: "Cannot find FXML file"
-
-**Solution**: Ensure `src/main/resources` is marked as a resource folder in your IDE
-
-### Issue: Application fails to start
-
-**Solution**:
-
-- Check Java version: `java -version` (should be 17+)
-- Clear Maven cache: `mvn clean`
-- Rebuild project: `mvn install`
-
-### Issue: Charts not displaying
-
-**Solution**: Ensure JavaFX libraries are properly loaded. Run `mvn javafx:run`
-
-## Performance Notes
-
-- The application efficiently handles up to 100,000+ invoices
-- Database queries are optimized for quick response
-- UI updates are handled on the JavaFX thread to prevent freezing
-- Stock calculations are cached for faster dashboard updates
-
-## Future Enhancements
-
-- Multi-user support with role-based access
-- Cloud synchronization
-- Barcode scanning integration
-- Advanced analytics and forecasting
-- Mobile app for remote access
-- Export to PDF/Excel
-- Backup and recovery options
-
-## Security Notes
-
-- Passwords and sensitive data are not currently stored (add authentication as needed)
-- Database file should be backed up regularly
-- Store database file in a secure location
-- No data encryption is currently implemented (consider adding for production use)
-
-## Support
-
-For issues or questions:
-
-1. Check the troubleshooting section above
-2. Review the source code comments
-3. Check the database schema in `DatabaseInitializer.java`
+- ✅ Product management (Add, Edit, Delete)
+- ✅ Inventory tracking
+- ✅ Billing and invoicing
+- ✅ Sales reports
+- ✅ Database persistence
+- ✅ Modern JavaFX UI
 
 ## License
 
-This project is provided as-is for local Kirana store management.
-
-## Author
-
-Developed for efficient Kirana store operations management.
-
----
-
-**Version**: 1.0.0  
-**Last Updated**: 2024  
-**Built with**: JavaFX 21, SQLite, Maven
+This project is for educational purposes.

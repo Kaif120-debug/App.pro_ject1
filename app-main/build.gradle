@@ -17,22 +17,15 @@ repositories {
 }
 
 dependencies {
-    // JavaFX
+    // JavaFX (UI Framework)
     implementation 'org.openjfx:javafx-controls:21.0.2'
     implementation 'org.openjfx:javafx-fxml:21.0.2'
     implementation 'org.openjfx:javafx-graphics:21.0.2'
     
-    // MySQL JDBC
+    // MySQL Database Driver
     implementation 'mysql:mysql-connector-java:8.0.33'
     
-    // SQLite JDBC (fallback)
-    implementation 'org.xerial:sqlite-jdbc:3.44.0.0'
-
-    // Lombok
-    compileOnly 'org.projectlombok:lombok:1.18.30'
-    annotationProcessor 'org.projectlombok:lombok:1.18.30'
-
-    // Logging
+    // Logging (Simple logging)
     implementation 'org.slf4j:slf4j-api:2.0.11'
     implementation 'org.slf4j:slf4j-simple:2.0.11'
 }
@@ -46,6 +39,7 @@ application {
     mainClass = 'com.kiranastore.KiranaStoreApp'
 }
 
+// JAR configuration
 jar {
     manifest {
         attributes 'Main-Class': 'com.kiranastore.KiranaStoreApp'
@@ -56,18 +50,7 @@ jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
-// Ensure resources are copied to build directory
+// Resource handling
 processResources {
-    from 'src/main/resources'
-}
-
-// JavaFX runtime configuration
-run {
-    jvmArgs = [
-        '--module-path', classpath.asPath,
-        '--add-modules', 'javafx.controls,javafx.fxml,javafx.graphics'
-    ]
-}
-tasks.processResources {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }

@@ -140,12 +140,12 @@ public class SalesReportDAO {
     }
 
     private SalesReport mapResultSetToSalesReport(ResultSet rs) throws SQLException {
-        return SalesReport.builder()
-            .id(rs.getInt("id"))
-            .saleDate(rs.getDate("sale_date").toLocalDate())
-            .totalSales(rs.getDouble("total_sales"))
-            .totalProfit(rs.getDouble("total_profit"))
-            .totalTransactions(rs.getInt("total_transactions"))
-            .build();
+        SalesReport report = new SalesReport();
+        report.setId(rs.getInt("id"));
+        report.setSaleDate(rs.getDate("sale_date").toLocalDate());
+        report.setTotalSales(rs.getDouble("total_sales"));
+        report.setTotalProfit(rs.getDouble("total_profit"));
+        report.setTotalTransactions(rs.getInt("total_transactions"));
+        return report;
     }
 }

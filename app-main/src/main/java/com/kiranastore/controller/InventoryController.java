@@ -157,9 +157,18 @@ public class InventoryController {
         dialog.getDialogPane().setContent(grid);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
+        // Convert the result to a Product object
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == ButtonType.OK) {
+                return createProductFromForm(grid);
+            }
+            return null;
+        });
+
         Optional<Product> result = dialog.showAndWait();
         result.ifPresent(product -> {
-            if (productService.addProduct(product)) {
+            logger.info("Add product dialog result: {}", product);
+            if (product != null && productService.addProduct(product)) {
                 loadProducts();
                 showInfo("Product added successfully!");
             } else {
@@ -183,9 +192,18 @@ public class InventoryController {
         dialog.getDialogPane().setContent(grid);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
+        // Convert the result to a Product object
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == ButtonType.OK) {
+                return createProductFromForm(grid, selected);
+            }
+            return null;
+        });
+
         Optional<Product> result = dialog.showAndWait();
         result.ifPresent(product -> {
-            if (productService.updateProduct(product)) {
+            logger.info("Edit product dialog result: {}", product);
+            if (product != null && productService.updateProduct(product)) {
                 loadProducts();
                 showInfo("Product updated successfully!");
             } else {
@@ -240,6 +258,59 @@ public class InventoryController {
                                       sellingPriceField, quantityField, reorderField, product});
 
         return grid;
+    }
+
+    private Product createProductFromForm(GridPane grid) {
+        return createProductFromForm(grid, null);
+    }
+
+    private Product createProductFromForm(GridPane grid, Product existingProduct) {
+        try {
+            Object[] fields = (Object[]) grid.getUserData();
+            TextField nameField = (TextField) fields[0];
+            TextField skuField = (TextField) fields[1];
+            TextField categoryField = (TextField) fields[2];
+            TextField buyingPriceField = (TextField) fields[3];
+            TextField sellingPriceField = (TextField) fields[4];
+            TextField quantityField = (TextField) fields[5];
+            TextField reorderField = (TextField) fields[6];
+
+            // Validate required fields
+            if (nameField.getText().trim().isEmpty() || skuField.getText().trim().isEmpty() || 
+                categoryField.getText().trim().isEmpty()) {
+                showError("Please fill in all required fields (Name, SKU, Category)");
+                return null;
+            }
+
+            // Parse numeric fields
+            double buyingPrice = Double.parseDouble(buyingPriceField.getText().trim());
+            double sellingPrice = Double.parseDouble(sellingPriceField.getText().trim());
+            int quantity = Integer.parseInt(quantityField.getText().trim());
+            int reorderLevel = Integer.parseInt(reorderField.getText().trim());
+
+            // Create Product object
+            Product product = new Product();
+            if (existingProduct != null) {
+                product.setId(existingProduct.getId()); // Keep existing ID for updates
+            }
+            product.setName(nameField.getText().trim());
+            product.setSku(skuField.getText().trim());
+            product.setCategory(categoryField.getText().trim());
+            product.setBuyingPrice(buyingPrice);
+            product.setSellingPrice(sellingPrice);
+            product.setQuantityInStock(quantity);
+            product.setReorderLevel(reorderLevel);
+
+            logger.info("Created product from form: {}", product);
+            return product;
+        } catch (NumberFormatException e) {
+            showError("Please enter valid numbers for price and quantity fields");
+            return null;
+        } catch (Exception e) {
+            logger.error("Error creating product from form", e);
+            showError("Error creating product: " + e.getMessage());
+            return null;
+        }
     }
 
     private void deleteSelectedProduct() {

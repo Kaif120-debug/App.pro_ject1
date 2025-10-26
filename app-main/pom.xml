@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
 
     <name>Kirana Store Manager</name>
-    <description>Desktop application for Kirana store inventory, billing, and sales management</description>
+    <description>Java + JavaFX + MySQL Desktop Application for Kirana store management</description>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -22,7 +22,7 @@
     </properties>
 
     <dependencies>
-        <!-- JavaFX -->
+        <!-- JavaFX UI Framework -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -39,29 +39,14 @@
             <version>${javafx.version}</version>
         </dependency>
 
-        <!-- MySQL JDBC -->
+        <!-- MySQL Database Driver -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
         </dependency>
-        
-        <!-- SQLite JDBC (keeping as fallback) -->
-        <dependency>
-            <groupId>org.xerial</groupId>
-            <artifactId>sqlite-jdbc</artifactId>
-            <version>3.44.0.0</version>
-        </dependency>
 
-        <!-- Lombok for reducing boilerplate -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Logging -->
+        <!-- Simple Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -92,27 +77,6 @@
                 <configuration>
                     <mainClass>com.kiranastore.KiranaStoreApp</mainClass>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.5.0</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.kiranastore.KiranaStoreApp</mainClass>
-                                </transformer>
-                            </transformers>
-                            <finalName>KiranaStoreManager</finalName>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

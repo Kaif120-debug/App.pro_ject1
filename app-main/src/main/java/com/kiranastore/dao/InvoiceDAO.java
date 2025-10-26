@@ -145,29 +145,29 @@ public class InvoiceDAO {
     }
 
     private Invoice mapResultSetToInvoice(ResultSet rs) throws SQLException {
-        return Invoice.builder()
-            .id(rs.getInt("id"))
-            .invoiceNumber(rs.getString("invoice_number"))
-            .customerName(rs.getString("customer_name"))
-            .customerPhone(rs.getString("customer_phone"))
-            .totalItems(rs.getInt("total_items"))
-            .subtotal(rs.getDouble("subtotal"))
-            .tax(rs.getDouble("tax"))
-            .totalAmount(rs.getDouble("total_amount"))
-            .paymentMethod(rs.getString("payment_method"))
-            .invoiceDate(rs.getTimestamp("invoice_date").toLocalDateTime())
-            .build();
+        Invoice invoice = new Invoice();
+        invoice.setId(rs.getInt("id"));
+        invoice.setInvoiceNumber(rs.getString("invoice_number"));
+        invoice.setCustomerName(rs.getString("customer_name"));
+        invoice.setCustomerPhone(rs.getString("customer_phone"));
+        invoice.setTotalItems(rs.getInt("total_items"));
+        invoice.setSubtotal(rs.getDouble("subtotal"));
+        invoice.setTax(rs.getDouble("tax"));
+        invoice.setTotalAmount(rs.getDouble("total_amount"));
+        invoice.setPaymentMethod(rs.getString("payment_method"));
+        invoice.setInvoiceDate(rs.getTimestamp("invoice_date").toLocalDateTime());
+        return invoice;
     }
 
     private InvoiceItem mapResultSetToInvoiceItem(ResultSet rs) throws SQLException {
-        return InvoiceItem.builder()
-            .id(rs.getInt("id"))
-            .invoiceId(rs.getInt("invoice_id"))
-            .productId(rs.getInt("product_id"))
-            .productName(rs.getString("product_name"))
-            .quantity(rs.getInt("quantity"))
-            .unitPrice(rs.getDouble("unit_price"))
-            .lineTotal(rs.getDouble("line_total"))
-            .build();
+        InvoiceItem item = new InvoiceItem();
+        item.setId(rs.getInt("id"));
+        item.setInvoiceId(rs.getInt("invoice_id"));
+        item.setProductId(rs.getInt("product_id"));
+        item.setProductName(rs.getString("product_name"));
+        item.setQuantity(rs.getInt("quantity"));
+        item.setUnitPrice(rs.getDouble("unit_price"));
+        item.setLineTotal(rs.getDouble("line_total"));
+        return item;
     }
 }

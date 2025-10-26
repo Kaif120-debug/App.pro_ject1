@@ -1,17 +1,9 @@
 package com.kiranastore.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Invoice {
     private int id;
     private String invoiceNumber;
@@ -24,10 +16,127 @@ public class Invoice {
     private String paymentMethod;
     private LocalDateTime invoiceDate;
     private LocalDateTime createdAt;
-
-    @Builder.Default
     private List<InvoiceItem> items = new ArrayList<>();
 
+    // Default constructor
+    public Invoice() {
+    }
+
+    // Constructor with all fields
+    public Invoice(int id, String invoiceNumber, String customerName, String customerPhone,
+                   int totalItems, double subtotal, double tax, double totalAmount,
+                   String paymentMethod, LocalDateTime invoiceDate, LocalDateTime createdAt) {
+        this.id = id;
+        this.invoiceNumber = invoiceNumber;
+        this.customerName = customerName;
+        this.customerPhone = customerPhone;
+        this.totalItems = totalItems;
+        this.subtotal = subtotal;
+        this.tax = tax;
+        this.totalAmount = totalAmount;
+        this.paymentMethod = paymentMethod;
+        this.invoiceDate = invoiceDate;
+        this.createdAt = createdAt;
+    }
+
+    // Getters and Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getInvoiceNumber() {
+        return invoiceNumber;
+    }
+
+    public void setInvoiceNumber(String invoiceNumber) {
+        this.invoiceNumber = invoiceNumber;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
+    }
+
+    public int getTotalItems() {
+        return totalItems;
+    }
+
+    public void setTotalItems(int totalItems) {
+        this.totalItems = totalItems;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public double getTax() {
+        return tax;
+    }
+
+    public void setTax(double tax) {
+        this.tax = tax;
+    }
+
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public LocalDateTime getInvoiceDate() {
+        return invoiceDate;
+    }
+
+    public void setInvoiceDate(LocalDateTime invoiceDate) {
+        this.invoiceDate = invoiceDate;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public List<InvoiceItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<InvoiceItem> items) {
+        this.items = items;
+    }
+
+    // Business methods
     public void addItem(InvoiceItem item) {
         items.add(item);
         recalculate();
@@ -48,5 +157,18 @@ public class Invoice {
     @Override
     public String toString() {
         return "Invoice #" + invoiceNumber + " - Rs." + String.format("%.2f", totalAmount);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Invoice invoice = (Invoice) obj;
+        return id == invoice.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(id);
     }
 }

@@ -23,15 +23,12 @@ public class InvoiceService {
             return -1;
         }
 
-        Invoice invoice = Invoice.builder()
-            .invoiceNumber(generateInvoiceNumber())
-            .customerName(customerName != null ? customerName : "Walk-in Customer")
-            .customerPhone(customerPhone)
-            .invoiceDate(LocalDateTime.now())
-            .paymentMethod(paymentMethod)
-            .items(items)
-            .build();
-
+        Invoice invoice = new Invoice();
+        invoice.setInvoiceNumber(generateInvoiceNumber());
+        invoice.setCustomerName(customerName != null ? customerName : "Walk-in Customer");
+        invoice.setCustomerPhone(customerPhone);
+        invoice.setInvoiceDate(LocalDateTime.now());
+        invoice.setPaymentMethod(paymentMethod);
         invoice.setItems(items);
         calculateInvoiceTotals(invoice);
 

@@ -176,15 +176,15 @@ public class ProductDAO {
     }
 
     private Product mapResultSetToProduct(ResultSet rs) throws SQLException {
-        return Product.builder()
-            .id(rs.getInt("id"))
-            .name(rs.getString("name"))
-            .sku(rs.getString("sku"))
-            .category(rs.getString("category"))
-            .buyingPrice(rs.getDouble("buying_price"))
-            .sellingPrice(rs.getDouble("selling_price"))
-            .quantityInStock(rs.getInt("quantity_in_stock"))
-            .reorderLevel(rs.getInt("reorder_level"))
-            .build();
+        Product product = new Product();
+        product.setId(rs.getInt("id"));
+        product.setName(rs.getString("name"));
+        product.setSku(rs.getString("sku"));
+        product.setCategory(rs.getString("category"));
+        product.setBuyingPrice(rs.getDouble("buying_price"));
+        product.setSellingPrice(rs.getDouble("selling_price"));
+        product.setQuantityInStock(rs.getInt("quantity_in_stock"));
+        product.setReorderLevel(rs.getInt("reorder_level"));
+        return product;
     }
 }
