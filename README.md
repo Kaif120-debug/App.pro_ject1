@@ -137,7 +137,7 @@ kirana-store-manager/
 
 ## Database
 
-The application uses **SQLite** with the following tables:
+The application uses **MySQL** with the following tables:
 
 - **products**: Store product information
 - **invoices**: Store invoice records
@@ -215,7 +215,7 @@ The system applies a default **5% tax** on all invoices. To modify:
 ## Default Settings
 
 - **Tax Rate**: 5%
-- **Database**: SQLite (Local file: `kiranastore.db`)
+- **Database**: MySQL (Local file: `kiranastore.db`)
 - **Date Format**: YYYY-MM-DD
 - **Currency**: Indian Rupees (Rs.)
 
@@ -285,4 +285,4 @@ Developed for efficient Kirana store operations management.
 
 **Version**: 1.0.0  
 **Last Updated**: 2024  
-**Built with**: JavaFX 21, SQLite, Maven
+**Built with**: JavaFX 21, MySQL, Gradle
