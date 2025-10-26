@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.kiranastore.controller.InventoryController"
+            fitToWidth="true">
+    
+    <VBox spacing="15" style="-fx-padding: 20;">
+        <Label text="Inventory Management" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+        
+        <!-- Statistics Row -->
+        <GridPane hgap="20">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="33"/>
+                <ColumnConstraints percentWidth="33"/>
+                <ColumnConstraints percentWidth="34"/>
+            </columnConstraints>
+            
+            <VBox style="-fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 15; -fx-background-color: white;"
+                  GridPane.columnIndex="0">
+                <Label text="Total Products" style="-fx-text-fill: #7f8c8d;"/>
+                <Label fx:id="totalProductsLabel" text="0" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #2980b9;"/>
+            </VBox>
+            
+            <VBox style="-fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 15; -fx-background-color: white;"
+                  GridPane.columnIndex="1">
+                <Label text="Total Stock" style="-fx-text-fill: #7f8c8d;"/>
+                <Label fx:id="totalStockLabel" text="0" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+            </VBox>
+            
+            <VBox style="-fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 15; -fx-background-color: white;"
+                  GridPane.columnIndex="2">
+                <Label text="Inventory Value" style="-fx-text-fill: #7f8c8d;"/>
+                <Label fx:id="inventoryValueLabel" text="Rs. 0.00" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #e74c3c;"/>
+            </VBox>
+        </GridPane>
+        
+        <!-- Search and Filter -->
+        <HBox spacing="10">
+            <TextField fx:id="searchField" promptText="Search by name or SKU..." HBox.hgrow="ALWAYS"/>
+            <ComboBox fx:id="categoryFilter" prefWidth="200"/>
+        </HBox>
+        
+        <!-- Product Table -->
+        <TableView fx:id="productTable" prefHeight="400" style="-fx-padding: 10;">
+            <columns>
+                <TableColumn fx:id="nameColumn" text="Product Name" prefWidth="150"/>
+                <TableColumn fx:id="skuColumn" text="SKU" prefWidth="80"/>
+                <TableColumn fx:id="categoryColumn" text="Category" prefWidth="100"/>
+                <TableColumn fx:id="buyingPriceColumn" text="Buying Price" prefWidth="100"/>
+                <TableColumn fx:id="sellingPriceColumn" text="Selling Price" prefWidth="100"/>
+                <TableColumn fx:id="quantityColumn" text="Quantity" prefWidth="80"/>
+                <TableColumn fx:id="reorderLevelColumn" text="Reorder Level" prefWidth="100"/>
+            </columns>
+        </TableView>
+        
+        <!-- Action Buttons -->
+        <HBox spacing="10">
+            <Button fx:id="addProductBtn" text="➕ Add Product" style="-fx-padding: 10;"/>
+            <Button fx:id="editProductBtn" text="✏️ Edit Product" style="-fx-padding: 10;"/>
+            <Button fx:id="deleteProductBtn" text="🗑️ Delete Product" style="-fx-padding: 10;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+        </HBox>
+    </VBox>
+</ScrollPane>

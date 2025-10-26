@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.kiranastore.controller.BillingController"
+            fitToWidth="true">
+
+    <HBox spacing="20" style="-fx-padding: 20; -fx-background-color: #ecf0f1;">
+        <!-- Left Panel - Product Selection -->
+        <VBox spacing="15" prefWidth="300"
+              style="-fx-padding: 20; -fx-background-color: white; -fx-border-color: #dcdde1; -fx-border-radius: 5; -fx-background-radius: 5;">
+            <Label text="Add Items to Bill" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+            <Separator/>
+
+            <Label text="Select Product:" style="-fx-text-fill: #7f8c8d;"/>
+            <ComboBox fx:id="productCombo" prefWidth="Infinity" promptText="Choose product..."/>
+
+            <Label text="Quantity:" style="-fx-text-fill: #7f8c8d;"/>
+            <TextField fx:id="quantityField" promptText="Enter quantity" style="-fx-padding: 8;"/>
+
+            <Button fx:id="addItemBtn" text="Add Item to Cart"
+                    prefWidth="Infinity" style="-fx-padding: 10; -fx-background-color: #3498db; -fx-text-fill: white;"/>
+
+            <Separator/>
+
+            <Label text="Customer Details" style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+            <Label text="Name (Optional):" style="-fx-text-fill: #7f8c8d;"/>
+            <TextField fx:id="customerNameField" promptText="Customer name..."/>
+
+            <Label text="Phone (Optional):" style="-fx-text-fill: #7f8c8d;"/>
+            <TextField fx:id="customerPhoneField" promptText="Phone number..."/>
+
+            <Label text="Payment Method:" style="-fx-text-fill: #7f8c8d;"/>
+            <ComboBox fx:id="paymentMethodCombo" prefWidth="Infinity"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Button fx:id="viewInvoicesBtn" text="View Invoices"
+                    prefWidth="Infinity" style="-fx-padding: 10; -fx-background-color: #95a5a6; -fx-text-fill: white;"/>
+        </VBox>
+
+        <!-- Right Panel - Cart and Totals -->
+        <VBox spacing="15" HBox.hgrow="ALWAYS"
+              style="-fx-padding: 20; -fx-background-color: white; -fx-border-color: #dcdde1; -fx-border-radius: 5; -fx-background-radius: 5;">
+            <Label text="Shopping Cart" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+            <Separator/>
+
+            <TableView fx:id="invoiceItemTable" prefHeight="350" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="productNameColumn" text="Product" prefWidth="200"/>
+                    <TableColumn fx:id="quantityColumn" text="Qty" prefWidth="70"/>
+                    <TableColumn fx:id="unitPriceColumn" text="Unit Price" prefWidth="100"/>
+                    <TableColumn fx:id="lineTotalColumn" text="Total" prefWidth="100"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="10">
+                <Button fx:id="removeItemBtn" text="Remove Item"
+                        style="-fx-padding: 8; -fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+            </HBox>
+
+            <!-- Totals Section -->
+            <VBox spacing="10"
+                  style="-fx-border-color: #ecf0f1; -fx-border-radius: 5; -fx-padding: 15; -fx-background-color: #f8f9fa;">
+                <HBox spacing="20">
+                    <Label text="Subtotal:" style="-fx-text-fill: #7f8c8d;"/>
+                    <Label fx:id="subtotalLabel" text="Rs. 0.00" style="-fx-font-weight: bold;"/>
+                </HBox>
+
+                <HBox spacing="20">
+                    <Label text="Tax (5%):" style="-fx-text-fill: #7f8c8d;"/>
+                    <Label fx:id="taxLabel" text="Rs. 0.00" style="-fx-font-weight: bold;"/>
+                </HBox>
+
+                <Separator/>
+
+                <HBox spacing="20">
+                    <Label text="Total Amount:" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                    <Label fx:id="totalLabel" text="Rs. 0.00"
+                           style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2ecc71;"/>
+                </HBox>
+            </VBox>
+
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Button fx:id="generateInvoiceBtn" text="Generate Invoice"
+                        style="-fx-padding: 10 20; -fx-font-size: 14; -fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;"
+                        prefWidth="250"/>
+                <Button fx:id="clearBillBtn" text="Clear"
+                        style="-fx-padding: 10 20; -fx-background-color: #95a5a6; -fx-text-fill: white;"
+                        prefWidth="120"/>
+            </HBox>
+        </VBox>
+    </HBox>
+</ScrollPane>
