@@ -1,6 +1,6 @@
-# Kirana Store Manager - Desktop Application
+# Retail Store Manager - Desktop Application
 
-A production-ready JavaFX desktop application designed to manage operational inefficiencies for local Kirana stores. The system provides comprehensive solutions for inventory management, billing, and sales reporting.
+A production-ready JavaFX desktop application designed to manage operational inefficiencies for local Retail stores. The system provides comprehensive solutions for inventory management, billing, and sales reporting.
 
 ## Features
 
