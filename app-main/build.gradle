@@ -68,3 +68,6 @@ run {
         '--add-modules', 'javafx.controls,javafx.fxml,javafx.graphics'
     ]
 }
+tasks.processResources {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
